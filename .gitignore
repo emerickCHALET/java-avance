@@ -39,3 +39,5 @@ gradle/wrapper/gradle-wrapper.properties
 .idea/.name
 .idea/compiler.xml
 .idea/gradle.xml
+build/classes/java/main/TFUtils.class
+build/classes/java/main/TFUtils$GraphBuilder.class
