@@ -1,27 +1,15 @@
 package launcher;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 import javafx.scene.image.*;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import org.tensorflow.Graph;
-import org.tensorflow.Session;
-import org.tensorflow.Tensor;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.lang.reflect.Array;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.io.*;
+
 
 public class Launcher extends Application {
 
@@ -41,27 +29,23 @@ public class Launcher extends Application {
             System.out.println(value);
         }*/
 
-        primaryStage.setTitle("Hello World!");
-        Button btn = new Button();
-        TextField txt = new TextField();
-        //Image img = new Image();
-        Button btns = new Button();
-        Story1 story1 = new Story1();
-        btns.setText("Story1");
-        //txt.setText(Story1.storyOne());
-        btns.setOnAction((action) -> {
-            try {
-                System.out.println(Story1.storyOne());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+        //Story2
+        Story2 story2 = new Story2();
 
+        primaryStage.setTitle("Story 2");
+        InputStream is = new FileInputStream("../java-avance/src/main/resources/inception5h/tensorPics/mouse.jpg");
+        Image image = new Image(is);
+        ImageView imageView = new ImageView(image);
+        imageView.setFitHeight(100);
+        imageView.setFitWidth(100);
 
+        Label label = new Label(Story2.storyTwo());
+        label.setMinWidth(100);
+        label.setMinHeight(50);
+        label.setPadding(new Insets(120,0,0,30));
         StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        root.getChildren().add(btns);
-        root.getChildren().add(txt);
+        root.getChildren().add(imageView);
+        root.getChildren().add(label);
         primaryStage.setScene(new Scene(root, 300, 250));
         primaryStage.show();
 
