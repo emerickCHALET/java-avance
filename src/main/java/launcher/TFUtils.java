@@ -1,3 +1,5 @@
+package launcher;
+
 import org.tensorflow.*;
 
 import java.io.IOException;
@@ -24,6 +26,9 @@ public class TFUtils {
             throw new Error("invalid path");
         }
     }
+
+    //
+
 
     Tensor executeModelFromByteArray(byte[] graphDef, Tensor input) {
         try (Graph g = new Graph()) {
