@@ -30,7 +30,7 @@ public class Launcher extends Application {
         }*/
 
         //Story2
-        Story2 story2 = new Story2();
+        /*Story2 story2 = new Story2();
 
         primaryStage.setTitle("Story 2");
         InputStream is = new FileInputStream("../java-avance/src/main/resources/inception5h/tensorPics/mouse.jpg");
@@ -47,7 +47,7 @@ public class Launcher extends Application {
         root.getChildren().add(imageView);
         root.getChildren().add(label);
         primaryStage.setScene(new Scene(root, 300, 250));
-        primaryStage.show();
+        primaryStage.show();*/
 
 
     }
