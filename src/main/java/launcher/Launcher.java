@@ -19,13 +19,11 @@ import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class Launcher extends Application {
-
-    //
-
 
     public static void main(String[] args) {
         launch(args);
@@ -33,6 +31,16 @@ public class Launcher extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
+        //Story 1
+        /*Story1 story1 = new Story1();
+        Story1.storyOne();
+        List<String> list = new ArrayList<String>(Story1.storyOne());
+        for (String value: list
+             ) {
+            System.out.println(value);
+        }*/
+
         primaryStage.setTitle("Hello World!");
         Button btn = new Button();
         TextField txt = new TextField();
