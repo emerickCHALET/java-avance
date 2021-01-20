@@ -20,36 +20,31 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
-public class Launcher extends Application {
-
-    //
-    private static int maxIndex(float[] probabilities) {
-        int best = 0;
-        for (int i = 1; i < probabilities.length; ++i) {
-            if (probabilities[i] > probabilities[best]) {
-                best = i;
-            }
-        }
-        return best;
-    }
-
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-    @Override
+public class Story2 {
     public void start(Stage primaryStage) throws Exception {
-        /*primaryStage.setTitle("Hello World!");
+        primaryStage.setTitle("Story");
         Button btn = new Button();
         btn.setText("Say 'Hello World'");
         btn.setOnAction((action) -> {
             System.out.println("Hello World!");
         });
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        primaryStage.setScene(new Scene(root, 300, 250));
-        primaryStage.show();*/
-        Story1 story1 = new Story1();
-        story1.storyOne();
     }
 }
+
+
+
+    /*int nlabels = (int) rshape[1];
+    float[] resultProbs = probs.copyTo(new float[1][nlabels])[0];
+
+    int bestLabelIdx = maxIndex(resultProbs);
+            primaryStage.setTitle("Hello World!");
+            btn.setText("description");
+            btn.setOnAction((action)->{
+
+
+    System.out.println( String.format("BEST MATCH: %s (%.2f%% likely)",
+            labels.get(bestLabelIdx),
+            resultProbs[bestLabelIdx] * 100f));
+
+});
+}*/
