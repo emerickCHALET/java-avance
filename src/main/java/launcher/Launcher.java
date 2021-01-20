@@ -3,6 +3,8 @@ package launcher;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.image.*;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import org.tensorflow.Graph;
@@ -23,15 +25,7 @@ import java.util.List;
 public class Launcher extends Application {
 
     //
-    private static int maxIndex(float[] probabilities) {
-        int best = 0;
-        for (int i = 1; i < probabilities.length; ++i) {
-            if (probabilities[i] > probabilities[best]) {
-                best = i;
-            }
-        }
-        return best;
-    }
+
 
     public static void main(String[] args) {
         launch(args);
@@ -39,17 +33,30 @@ public class Launcher extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        /*primaryStage.setTitle("Hello World!");
+        primaryStage.setTitle("Hello World!");
         Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction((action) -> {
-            System.out.println("Hello World!");
+        TextField txt = new TextField();
+        //Image img = new Image();
+        Button btns = new Button();
+        Story1 story1 = new Story1();
+        btns.setText("Story1");
+        //txt.setText(Story1.storyOne());
+        btns.setOnAction((action) -> {
+            try {
+                System.out.println(Story1.storyOne());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         });
+
+
         StackPane root = new StackPane();
         root.getChildren().add(btn);
+        root.getChildren().add(btns);
+        root.getChildren().add(txt);
         primaryStage.setScene(new Scene(root, 300, 250));
-        primaryStage.show();*/
-        Story1 story1 = new Story1();
-        story1.storyOne();
+        primaryStage.show();
+
+
     }
 }
