@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -32,6 +33,8 @@ public class Launcher extends Application {
     }
 
     File fileToSave = new File("");
+    File getFile = new File("");
+
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -65,102 +68,137 @@ public class Launcher extends Application {
         primaryStage.show();*/
 
         //Story 3
-        Story3 story3 = new Story3();
+//        Story3 story3 = new Story3();
+//
+//        primaryStage.setTitle("Story 3");
+//
+//        Label label = new Label();
+//        label.setTranslateY(55);
+//
+//        Label label1 = new Label();
+//        label1.setTranslateY(70);
+//
+//        Label label2 = new Label();
+//        label2.setTranslateY(90);
+//
+//        TextField textField = new TextField("Enter Description");
+//        textField.setTranslateY(-30);
+//        textField.setDisable(true);
+//
+//        TextField textField1 = new TextField("Indiquez le pourcentage minimum");
+//        textField1.setTranslateY(-60);
+//        textField1.setDisable(true);
+//
+//        Button button1 = new Button("Save File");
+//        button1.setTranslateY(30);
+//        button1.setDisable(true);
+//        button1.setOnAction(e -> {
+//            DirectoryChooser directoryChooser = new DirectoryChooser();
+//            directoryChooser.setTitle("Save file");
+//            File selectedDirectory = directoryChooser.showDialog(new Stage());
+//            if (selectedDirectory != null) {
+//                try {
+//                    BufferedImage bufferedImage = ImageIO.read(fileToSave);
+//                    ImageIO.write(bufferedImage, "jpg", new File(selectedDirectory.getPath() +"/"+ fileToSave.getName() + ".jpg"));
+//                    label1.setText("save realised");
+//                } catch (IOException f) {
+//                    label1.setText("File couldn't be saved.");
+//                }
+//            }else{
+//                label1.setText("save cancel");
+//            }
+//        });
+//
+//        Button button = new Button("Validate");
+//        button.setDisable(true);
+//        button.setOnAction(e -> {
+//            String description = textField.getText();
+//            String percent = textField1.getText();
+//            try {
+//                List<String> result = Story3.storyThree(description,percent,fileToSave);
+//                button1.setDisable(true);
+//                label2.setText("");
+//                for (String values:result) {
+//                    if(!values.equals("")){
+//                        label2.setText(values);
+//                        button1.setDisable(false);
+//                    }
+//                }
+//
+//
+//            } catch (Exception exception) {
+//                exception.printStackTrace();
+//            }
+//        });
+//
+//        Button button2 = new Button("Select Image");
+//        button2.setTranslateY(-90);
+//        button2.setOnAction(e -> {
+//            FileChooser fileChooser = new FileChooser();
+//            fileChooser.setTitle("Save file");
+//            fileChooser.setInitialDirectory(new File("../java-avance/src/main/resources/inception5h/tensorPics/"));
+//            fileChooser.getExtensionFilters().addAll(
+//                    new FileChooser.ExtensionFilter("JPG", "*.jpg"));
+//            File selectedfile = fileChooser.showOpenDialog(new Stage());
+//            if (selectedfile != null) {
+//                fileToSave = selectedfile;
+//                textField.setDisable(false);
+//                textField1.setDisable(false);
+//                button.setDisable(false);
+//                label.setText("File selected : " + selectedfile.getName());
+//            }
+//            else{
+//                label.setText("save cancel");
+//            }
+//        });
+//
+//        StackPane root = new StackPane();
+//        root.getChildren().add(button);
+//        root.getChildren().add(button1);
+//        root.getChildren().add(button2);
+//        root.getChildren().add(label);
+//        root.getChildren().add(label1);
+//        root.getChildren().add(label2);
+//        root.getChildren().add(textField);
+//        root.getChildren().add(textField1);
+//        primaryStage.setScene(new Scene(root, 300, 250));
+//        primaryStage.show();
 
-        primaryStage.setTitle("Story 3");
-
+        primaryStage.setTitle("Story 4");
         Label label = new Label();
         label.setTranslateY(55);
-
-        Label label1 = new Label();
-        label1.setTranslateY(70);
-
-        Label label2 = new Label();
-        label2.setTranslateY(90);
-
-        TextField textField = new TextField("Enter Description");
-        textField.setTranslateY(-30);
-        textField.setDisable(true);
-
-        TextField textField1 = new TextField("Indiquez le pourcentage minimum");
-        textField1.setTranslateY(-60);
-        textField1.setDisable(true);
-
-        Button button1 = new Button("Save File");
-        button1.setTranslateY(30);
-        button1.setDisable(true);
-        button1.setOnAction(e -> {
-            DirectoryChooser directoryChooser = new DirectoryChooser();
-            directoryChooser.setTitle("Save file");
-            File selectedDirectory = directoryChooser.showDialog(new Stage());
-            if (selectedDirectory != null) {
-                try {
-                    BufferedImage bufferedImage = ImageIO.read(fileToSave);
-                    ImageIO.write(bufferedImage, "jpg", new File(selectedDirectory.getPath() +"/"+ fileToSave.getName() + ".jpg"));
-                    label1.setText("save realised");
-                } catch (IOException f) {
-                    label1.setText("File couldn't be saved.");
-                }
-            }else{
-                label1.setText("save cancel");
-            }
-        });
-
-        Button button = new Button("Validate");
-        button.setDisable(true);
-        button.setOnAction(e -> {
-            String description = textField.getText();
-            String percent = textField1.getText();
-            try {
-                List<String> result = Story3.storyThree(description,percent,fileToSave);
-                button1.setDisable(true);
-                label2.setText("");
-                for (String values:result) {
-                    if(!values.equals("")){
-                        label2.setText(values);
-                        button1.setDisable(false);
-                    }
-                }
+        Button imgButton = new Button("Select Image");
+        //ImageView imageView = new ImageView();
 
 
-            } catch (Exception exception) {
-                exception.printStackTrace();
-            }
-        });
-
-        Button button2 = new Button("Select Image");
-        button2.setTranslateY(-90);
-        button2.setOnAction(e -> {
+        imgButton.setOnAction(e -> {
             FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Save file");
-            fileChooser.setInitialDirectory(new File("../java-avance/src/main/resources/inception5h/tensorPics/"));
             fileChooser.getExtensionFilters().addAll(
                     new FileChooser.ExtensionFilter("JPG", "*.jpg"));
             File selectedfile = fileChooser.showOpenDialog(new Stage());
             if (selectedfile != null) {
-                fileToSave = selectedfile;
-                textField.setDisable(false);
-                textField1.setDisable(false);
-                button.setDisable(false);
-                label.setText("File selected : " + selectedfile.getName());
+                getFile = selectedfile;
+                ImageView getImage = null;
+                try {
+                    InputStream is = new FileInputStream(getFile);
+                    Image image = new Image(is);
+                    getImage = new ImageView(image);
+                    getImage.setFitHeight(100);
+                    getImage.setFitWidth(100);
+                } catch (FileNotFoundException fileNotFoundException) {
+                    fileNotFoundException.printStackTrace();
+                }
+
             }
             else{
                 label.setText("save cancel");
             }
         });
-
         StackPane root = new StackPane();
-        root.getChildren().add(button);
-        root.getChildren().add(button1);
-        root.getChildren().add(button2);
+        root.getChildren().add(imgButton);
         root.getChildren().add(label);
-        root.getChildren().add(label1);
-        root.getChildren().add(label2);
-        root.getChildren().add(textField);
-        root.getChildren().add(textField1);
+        root.getChildren.add(getImage);
         primaryStage.setScene(new Scene(root, 300, 250));
         primaryStage.show();
-
-
     }
 }
