@@ -28,6 +28,7 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -47,17 +48,29 @@ public class Launcher extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+        //startStoryOne();
+        //startStoryTwo(primaryStage);
+        //startStoryThree(primaryStage);
+        //startStoryFour(primaryStage);
+        //startStoryFive(primaryStage);
+        //startStorySix(primaryStage);
+        startStorySeven(primaryStage);
+
+    }
+    public void startStoryOne() throws Exception {
         //Story 1
-        /*Story1 story1 = new Story1();
+        Story1 story1 = new Story1();
         Story1.storyOne();
         List<String> list = new ArrayList<String>(Story1.storyOne());
         for (String value: list
              ) {
             System.out.println(value);
-        }*/
+        }
+    }
 
+    public void startStoryTwo(Stage primaryStage) throws Exception {
         //Story2
-        /*Story2 story2 = new Story2();
+        Story2 story2 = new Story2();
 
         primaryStage.setTitle("Story 2");
         InputStream is = new FileInputStream("../java-avance/src/main/resources/inception5h/tensorPics/mouse.jpg");
@@ -74,10 +87,12 @@ public class Launcher extends Application {
         root.getChildren().add(imageView);
         root.getChildren().add(label);
         primaryStage.setScene(new Scene(root, 300, 250));
-        primaryStage.show();*/
+        primaryStage.show();
+    }
 
+    public void startStoryThree(Stage primaryStage){
         //Story 3
-        /*Story3 story3 = new Story3();
+        Story3 story3 = new Story3();
 
         primaryStage.setTitle("Story 3");
 
@@ -171,10 +186,12 @@ public class Launcher extends Application {
         root.getChildren().add(textField);
         root.getChildren().add(textField1);
         primaryStage.setScene(new Scene(root, 300, 250));
-        primaryStage.show();*/
+        primaryStage.show();
+    }
 
+    public void startStoryFour(Stage primaryStage) throws FileNotFoundException {
         //Story 4
-        /*primaryStage.setTitle("Story 4");
+        primaryStage.setTitle("Story 4");
         Label label = new Label();
         label.setTranslateY(80);
 
@@ -280,11 +297,12 @@ public class Launcher extends Application {
         root.getChildren().add(label1);
         root.getChildren().add(cam);
         primaryStage.setScene(new Scene(root, 600, 800));
-        primaryStage.show();*/
+        primaryStage.show();
+    }
 
+    public void startStoryFive(Stage primaryStage) throws Exception {
 
         //Story 5
-        /*Story5 story5 = new Story5();
         primaryStage.setTitle("Story 5");
 
         ImageView cam = new ImageView();
@@ -317,10 +335,13 @@ public class Launcher extends Application {
         root.getChildren().add(button2);
         root.getChildren().add(cam);
         primaryStage.setScene(new Scene(root, 800, 600));
-        primaryStage.show();*/
+        primaryStage.show();
+    }
+
+    public void startStorySix(Stage primaryStage) throws Exception {
 
         //Story 6
-        /*
+
         primaryStage.setTitle("Story 6");
         Button button = new Button("Add filter to image");
         button.setTranslateY(80);
@@ -344,10 +365,12 @@ public class Launcher extends Application {
         root.getChildren().add(imageView);
         root.getChildren().add(filterList);
         primaryStage.setScene(new Scene(root, 300, 250));
-        primaryStage.show();*/
+        primaryStage.show();
+    }
 
+    public void startStorySeven(Stage primaryStage) throws Exception {
         //Story7
-        /*
+
         primaryStage.setTitle("Story 7");
         Button button = new Button("Add filter to image");
         button.setTranslateY(100);
@@ -408,8 +431,7 @@ public class Launcher extends Application {
         root.getChildren().add(cadreList);
         root.getChildren().add(label);
         primaryStage.setScene(new Scene(root, 300, 300));
-        primaryStage.show();*/
-
+        primaryStage.show();
     }
 
     private void stopCam() {
