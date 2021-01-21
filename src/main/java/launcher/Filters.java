@@ -1,15 +1,13 @@
 package launcher;
 
-import javafx.scene.control.ComboBox;
+import javafx.scene.effect.Effect;
 import javafx.scene.effect.Light;
 import javafx.scene.effect.Lighting;
 import javafx.scene.paint.Color;
 
-import java.util.List;
-
 public class Filters {
 
-    public void filtersList(String listFilter) {
+    public Effect filtersList(String listFilter) {
         Lighting lighting = new Lighting();
         switch (listFilter) {
             case "Red": //Action for this item
@@ -36,5 +34,6 @@ public class Filters {
             default: //Default action
                 break;
         }
+        return lighting;
     }
 }

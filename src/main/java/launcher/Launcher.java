@@ -168,8 +168,8 @@ public class Launcher extends Application {
 //        primaryStage.setScene(new Scene(root, 300, 250));
 //        primaryStage.show();
 
-
-        Button button = new Button("Add filter to image");
+        //Story 6
+        /*Button button = new Button("Add filter to image");
         button.setTranslateY(80);
         FileInputStream is = new FileInputStream("../java-avance/src/main/resources/inception5h/tensorPics/mouse.jpg");
         Image image = new Image(is);
@@ -183,17 +183,14 @@ public class Launcher extends Application {
         filterList.getItems().addAll("Red", "Green", "Blue");
 
         button.setOnAction(e -> {
-
+            imageView.setEffect(filter.filtersList(filterList.getValue().toString())); // Apply filter to the image
         });
-
-        imageView.setEffect(lighting); // Apply filter to the image
-
 
         StackPane root = new StackPane();
         root.getChildren().add(button);
         root.getChildren().add(imageView);
         root.getChildren().add(filterList);
         primaryStage.setScene(new Scene(root, 300, 250));
-        primaryStage.show();
+        primaryStage.show();*/
     }
 }
