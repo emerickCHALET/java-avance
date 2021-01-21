@@ -320,7 +320,9 @@ public class Launcher extends Application {
         primaryStage.show();*/
 
         //Story 6
-        /*Button button = new Button("Add filter to image");
+        /*
+        primaryStage.setTitle("Story 6");
+        Button button = new Button("Add filter to image");
         button.setTranslateY(80);
         FileInputStream is = new FileInputStream("../java-avance/src/main/resources/inception5h/tensorPics/mouse.jpg");
         Image image = new Image(is);
@@ -331,7 +333,7 @@ public class Launcher extends Application {
         ComboBox filterList = new ComboBox();
         Filters filter = new Filters();
         filterList.setTranslateY(-70);
-        filterList.getItems().addAll("Red", "Green", "Blue");
+        filterList.getItems().addAll("Red", "Green", "Blue","");
 
         button.setOnAction(e -> {
             imageView.setEffect(filter.filtersList(filterList.getValue().toString())); // Apply filter to the image
@@ -342,6 +344,70 @@ public class Launcher extends Application {
         root.getChildren().add(imageView);
         root.getChildren().add(filterList);
         primaryStage.setScene(new Scene(root, 300, 250));
+        primaryStage.show();*/
+
+        //Story7
+        /*
+        primaryStage.setTitle("Story 7");
+        Button button = new Button("Add filter to image");
+        button.setTranslateY(100);
+
+        FileInputStream is = new FileInputStream("../java-avance/src/main/resources/inception5h/tensorPics/mouse.jpg");
+        Image image = new Image(is);
+        ImageView imageView = new ImageView(image);
+        imageView.setFitHeight(100);
+        imageView.setFitWidth(100);
+
+        Label label = new Label();
+
+        ComboBox filterList = new ComboBox();
+        Filters filter = new Filters();
+        filterList.setTranslateY(-90);
+        filterList.getItems().addAll("Red", "Green", "Blue", "");
+
+        ComboBox cadreList = new ComboBox();
+        cadreList.setTranslateY(-130);
+        cadreList.getItems().addAll("cadre1","cadre2","");
+
+        button.setOnAction(e -> {
+            if (filterList.getValue() != null){
+                imageView.setEffect(filter.filtersList(filterList.getValue().toString())); // Apply filter to the image
+            }else if (filterList.getSelectionModel().getSelectedItem() == ""){
+                imageView.setEffect(null);
+            }
+            if (cadreList.getSelectionModel().getSelectedItem() != ""){
+                String name = cadreList.getValue().toString();
+                try {
+                    InputStream us = new FileInputStream("../java-avance/src/main/resources/inception5h/cadre/"+name+".png");
+                    Image images = new Image(us);
+                    ImageView view = new ImageView(images);
+                    view.setFitHeight(145);
+                    view.setFitWidth(145);
+                    label.setGraphic(view);
+                    label.setVisible(true);
+                } catch (FileNotFoundException fileNotFoundException) {
+                    fileNotFoundException.printStackTrace();
+                }
+            }else if (cadreList.getSelectionModel().getSelectedItem() == ""){
+                label.setVisible(false);
+            }
+        });
+
+        Button resetButton = new Button("reset");
+        resetButton.setTranslateY(130);
+        resetButton.setOnAction(e ->{
+            label.setVisible(false);
+            imageView.setEffect(null);
+        });
+
+        StackPane root = new StackPane();
+        root.getChildren().add(button);
+        root.getChildren().add(resetButton);
+        root.getChildren().add(imageView);
+        root.getChildren().add(filterList);
+        root.getChildren().add(cadreList);
+        root.getChildren().add(label);
+        primaryStage.setScene(new Scene(root, 300, 300));
         primaryStage.show();*/
 
     }
