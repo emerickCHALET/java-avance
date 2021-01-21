@@ -8,7 +8,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.Light;
+import javafx.scene.effect.Lighting;
 import javafx.scene.image.*;
+import javafx.scene.paint.Color;
 import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.stage.DirectoryChooser;
@@ -16,10 +19,12 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
@@ -163,5 +168,32 @@ public class Launcher extends Application {
 //        primaryStage.setScene(new Scene(root, 300, 250));
 //        primaryStage.show();
 
+
+        Button button = new Button("Add filter to image");
+        button.setTranslateY(80);
+        FileInputStream is = new FileInputStream("../java-avance/src/main/resources/inception5h/tensorPics/mouse.jpg");
+        Image image = new Image(is);
+        ImageView imageView = new ImageView(image);
+        imageView.setFitHeight(100);
+        imageView.setFitWidth(100);
+
+        ComboBox filterList = new ComboBox();
+        Filters filter = new Filters();
+        filterList.setTranslateY(-70);
+        filterList.getItems().addAll("Red", "Green", "Blue");
+
+        button.setOnAction(e -> {
+
+        });
+
+        imageView.setEffect(lighting); // Apply filter to the image
+
+
+        StackPane root = new StackPane();
+        root.getChildren().add(button);
+        root.getChildren().add(imageView);
+        root.getChildren().add(filterList);
+        primaryStage.setScene(new Scene(root, 300, 250));
+        primaryStage.show();
     }
 }
