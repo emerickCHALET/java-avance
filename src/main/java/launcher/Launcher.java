@@ -15,7 +15,9 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import org.bytedeco.javacv.Frame;
+import org.bytedeco.javacv.FrameGrabber;
 import org.bytedeco.javacv.Java2DFrameConverter;
+import org.bytedeco.javacv.OpenCVFrameGrabber;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -38,8 +40,9 @@ public class Launcher extends Application {
 
     File getFile = new File("");
     File fileToSave = new File("");
+    OpenCVFrameGrabber grabber = new OpenCVFrameGrabber(0);
     Java2DFrameConverter converter = new Java2DFrameConverter();
-    
+    String url = "";
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -169,19 +172,67 @@ public class Launcher extends Application {
         primaryStage.setScene(new Scene(root, 300, 250));
         primaryStage.show();*/
 
-         primaryStage.setTitle("Story 4");
+        //Story 4
+        /*primaryStage.setTitle("Story 4");
         Label label = new Label();
         label.setTranslateY(80);
+
+        Label label1 = new Label();
+        label1.setTranslateY(300);
 
         ImageView cam = new ImageView();
         grabber.setImageWidth(300);
         grabber.setImageHeight(300);
 
+        Button start_cameraButton = new Button("Start Camera");
+        start_cameraButton.setTranslateY(270);
+        start_cameraButton.setTranslateX(-200);
+        start_cameraButton.setOnAction(e ->{
+            try {
+                cam.setVisible(true);
+                startCam(cam);
+
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        });
+
+        Button stop_cameraButton = new Button("Stop Camera");
+        stop_cameraButton.setTranslateY(270);
+        stop_cameraButton.setTranslateX(-100);
+        stop_cameraButton.setOnAction(e ->{
+            try{
+                stopCam();
+                cam.setVisible(false);
+            }catch (Exception exception){}
+        });
+
+        Button takePhotoButton = new Button("take photo");
+        takePhotoButton.setTranslateY(270);
+        takePhotoButton.setOnAction(e -> {
+            try {
+                Frame frame = grabber.grab();
+                BufferedImage bufferedImage = converter.getBufferedImage(frame);
+                Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+                ImageView imageView = new ImageView(image);
+                imageView.setFitHeight(300);
+                imageView.setFitWidth(400);
+                try {
+                    ImageIO.write(bufferedImage,"jpg", new File("../java-avance/src/main/resources/inception5h/tensorPics/savephoto.jpg"));
+                }catch (Exception exception){}
+                url = "../java-avance/src/main/resources/inception5h/tensorPics/savephoto.jpg";
+                label.setGraphic(imageView);
+                stopCam();
+                cam.setVisible(false);
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+
+        });
+
         Button imgButton = new Button("Select Image");
-        imgButton.setTranslateY(50);
-
-        Button cameraButton = new Button("Start Camera");
-
+        imgButton.setTranslateY(270);
+        imgButton.setTranslateX(100);
         imgButton.setOnAction(e -> {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setInitialDirectory(new File("../java-avance/src/main/resources/inception5h/tensorPics/"));
@@ -194,8 +245,9 @@ public class Launcher extends Application {
                     InputStream is = new FileInputStream(getFile);
                     Image image = new Image(is);
                     ImageView view = new ImageView(image);
-                    view.setFitHeight(70);
-                    view.setFitWidth(70);
+                    view.setFitHeight(200);
+                    view.setFitWidth(200);
+                    url = selectedfile.getPath();
                     label.setGraphic(view);
                 } catch (FileNotFoundException fileNotFoundException) {
                     fileNotFoundException.printStackTrace();
@@ -205,11 +257,29 @@ public class Launcher extends Application {
                 label.setText("save cancel");
             }
         });
+
+        Button launchCalculButton = new Button("Launch Calcul");
+        launchCalculButton.setTranslateY(270);
+        launchCalculButton.setTranslateX(200);
+        launchCalculButton.setOnAction(e -> {
+            try {
+                label1.setText(Story4.storyFour(url));
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        });
+
         StackPane root = new StackPane();
         root.getChildren().add(imgButton);
+        root.getChildren().add(start_cameraButton);
+        root.getChildren().add(stop_cameraButton);
+        root.getChildren().add(takePhotoButton);
+        root.getChildren().add(launchCalculButton);
         root.getChildren().add(label);
-        primaryStage.setScene(new Scene(root, 300, 250));
-        primaryStage.show();
+        root.getChildren().add(label1);
+        root.getChildren().add(cam);
+        primaryStage.setScene(new Scene(root, 600, 800));
+        primaryStage.show();*/
 
 
         //Story 5
