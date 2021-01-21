@@ -14,6 +14,9 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import org.bytedeco.javacv.Frame;
+import org.bytedeco.javacv.Java2DFrameConverter;
+import org.bytedeco.javacv.OpenCVFrameGrabber;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -23,6 +26,9 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 
 public class Launcher extends Application {
@@ -31,6 +37,8 @@ public class Launcher extends Application {
         launch(args);
     }
     File fileToSave = new File("");
+    OpenCVFrameGrabber grabber = new OpenCVFrameGrabber(0);
+    Java2DFrameConverter converter = new Java2DFrameConverter();
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -117,24 +125,79 @@ public class Launcher extends Application {
         primaryStage.setScene(new Scene(root, 300, 250));
         primaryStage.show();*/
 
-        Story5 story5 = new Story5();
+        //Story 5
+        /*Story5 story5 = new Story5();
         primaryStage.setTitle("Story 5");
 
+        ImageView cam = new ImageView();
+        grabber.setImageWidth(300);
+        grabber.setImageHeight(300);
 
         Button button = new Button("Launch webcam");
         button.setOnAction(e -> {
             try {
-                story5.grabber();
+                cam.setVisible(true);
+                startCam(cam);
+
 
             } catch (Exception exception) {
                 exception.printStackTrace();
             }
         });
+
+        Button button2 = new Button("Stop camera");
+        button2.setTranslateY(265);
+        button2.setOnAction(e->{
+            try{
+                stopCam();
+                cam.setVisible(false);
+            }catch (Exception exception){}
+        });
+
         StackPane root = new StackPane();
         root.getChildren().add(button);
-        primaryStage.setScene(new Scene(root, 1280, 480));
-        primaryStage.show();
+        root.getChildren().add(button2);
+        root.getChildren().add(cam);
+        primaryStage.setScene(new Scene(root, 800, 600));
+        primaryStage.show();*/
 
+    }
 
+    private void stopCam() {
+        try {
+            grabber.stop();
+        }catch (Exception e){}
+    }
+
+    private void startCam(ImageView cam) {
+        try{
+            grabber.start();
+        }catch (Exception e){}
+
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                getFrame(cam);
+            }
+        };
+
+        ScheduledExecutorService service = Executors.newScheduledThreadPool(1);
+        service.scheduleAtFixedRate(runnable,0,40, TimeUnit.MILLISECONDS);
+    }
+
+    private void getFrame(ImageView cam) {
+
+        try {
+            Frame frame = grabber.grab();
+            if(frame != null){
+                WritableImage image = frameToImage(frame);
+                cam.setImage(image);
+            }
+        } catch (Exception e){}
+    }
+
+    private WritableImage frameToImage(Frame frame) {
+        BufferedImage bufferedImage = converter.getBufferedImage(frame);
+        return SwingFXUtils.toFXImage(bufferedImage, null);
     }
 }
