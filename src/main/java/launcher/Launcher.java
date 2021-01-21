@@ -63,7 +63,7 @@ public class Launcher extends Application {
         primaryStage.setScene(new Scene(root, 300, 250));
         primaryStage.show();*/
 
-        //Story 3
+        /*Story 3
         Story3 story3 = new Story3();
 
         primaryStage.setTitle("Story 3");
@@ -115,6 +115,24 @@ public class Launcher extends Application {
         root.getChildren().add(label1);
         root.getChildren().add(textField);
         primaryStage.setScene(new Scene(root, 300, 250));
+        primaryStage.show();*/
+
+        Story5 story5 = new Story5();
+        primaryStage.setTitle("Story 5");
+
+
+        Button button = new Button("Launch webcam");
+        button.setOnAction(e -> {
+            try {
+                story5.grabber();
+
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        });
+        StackPane root = new StackPane();
+        root.getChildren().add(button);
+        primaryStage.setScene(new Scene(root, 1280, 480));
         primaryStage.show();
 
 
