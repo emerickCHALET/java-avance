@@ -15,6 +15,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import org.bytedeco.javacv.Frame;
+import org.bytedeco.javacv.Java2DFrameConverter;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -35,7 +36,10 @@ public class Launcher extends Application {
         launch(args);
     }
 
+    File getFile = new File("");
     File fileToSave = new File("");
+    Java2DFrameConverter converter = new Java2DFrameConverter();
+    
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -163,7 +167,49 @@ public class Launcher extends Application {
         root.getChildren().add(textField);
         root.getChildren().add(textField1);
         primaryStage.setScene(new Scene(root, 300, 250));
-        primaryStage.show();/*
+        primaryStage.show();*/
+
+         primaryStage.setTitle("Story 4");
+        Label label = new Label();
+        label.setTranslateY(80);
+
+        ImageView cam = new ImageView();
+        grabber.setImageWidth(300);
+        grabber.setImageHeight(300);
+
+        Button imgButton = new Button("Select Image");
+        imgButton.setTranslateY(50);
+
+        Button cameraButton = new Button("Start Camera");
+
+        imgButton.setOnAction(e -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setInitialDirectory(new File("../java-avance/src/main/resources/inception5h/tensorPics/"));
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("JPG", "*.jpg"));
+            File selectedfile = fileChooser.showOpenDialog(new Stage());
+            if (selectedfile != null) {
+                getFile = selectedfile;
+                try {
+                    InputStream is = new FileInputStream(getFile);
+                    Image image = new Image(is);
+                    ImageView view = new ImageView(image);
+                    view.setFitHeight(70);
+                    view.setFitWidth(70);
+                    label.setGraphic(view);
+                } catch (FileNotFoundException fileNotFoundException) {
+                    fileNotFoundException.printStackTrace();
+                }
+            }
+            else{
+                label.setText("save cancel");
+            }
+        });
+        StackPane root = new StackPane();
+        root.getChildren().add(imgButton);
+        root.getChildren().add(label);
+        primaryStage.setScene(new Scene(root, 300, 250));
+        primaryStage.show();
 
 
         //Story 5
