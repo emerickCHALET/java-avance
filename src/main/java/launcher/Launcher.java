@@ -522,6 +522,7 @@ public class Launcher extends Application {
         resetButton.setOnAction(e ->{
             label.setVisible(false);
             imageView.setEffect(null);
+            label1.setVisible(false);
         });
 
         StackPane root = new StackPane();
