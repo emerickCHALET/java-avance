@@ -436,7 +436,7 @@ public class Launcher extends Application {
     }
 
     public void startStoryEight(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Story 7");
+        primaryStage.setTitle("Story 8");
         Button button = new Button("Add stamp to image");
         button.setTranslateY(100);
 
@@ -447,6 +447,9 @@ public class Launcher extends Application {
         textFieldPosY.setTranslateY(-90);
 
         Label label = new Label();
+
+        Label label1 = new Label();
+        label1.setTranslateY(70);
 
         FileInputStream is = new FileInputStream("../java-avance/src/main/resources/inception5h/tensorPics/mouse.jpg");
         Image image = new Image(is);
@@ -459,15 +462,18 @@ public class Launcher extends Application {
                 InputStream us = new FileInputStream("../java-avance/src/main/resources/inception5h/cadre/tampon.png");
                 Image images = new Image(us);
                 ImageView view = new ImageView(images);
-                if ((Double.parseDouble(textFieldPosX.getText()) >= 37.0 && Double.parseDouble(textFieldPosY.getText()) <= -37.0) && (Double.parseDouble(textFieldPosY.getText()) >= 37 && Double.parseDouble(textFieldPosY.getText()) <= -37)) {
-                    System.out.println("Value non valable");
+                if ((Double.parseDouble(textFieldPosX.getText()) >= 37.0 || Double.parseDouble(textFieldPosY.getText()) <= -37.0) || (Double.parseDouble(textFieldPosY.getText()) >= 37 || Double.parseDouble(textFieldPosY.getText()) <= -37)) {
+                    label1.setText("Value non valable");
+                    label.setVisible(false);
+                }else{
+                    view.setTranslateX(Double.parseDouble(textFieldPosX.getText()));
+                    view.setTranslateY(Double.parseDouble(textFieldPosY.getText()));
+                    view.setFitHeight(25);
+                    view.setFitWidth(25);
+                    label.setGraphic(view);
+                    label.setVisible(true);
+                    label1.setText("");
                 }
-                view.setTranslateX(Double.parseDouble(textFieldPosX.getText()));
-                view.setTranslateY(Double.parseDouble(textFieldPosY.getText()));
-                view.setFitHeight(25);
-                view.setFitWidth(25);
-                label.setGraphic(view);
-                label.setVisible(true);
             } catch (FileNotFoundException fileNotFoundException) {
                 fileNotFoundException.printStackTrace();
             }
@@ -479,6 +485,7 @@ public class Launcher extends Application {
         root.getChildren().add(textFieldPosY);
         root.getChildren().add(imageView);
         root.getChildren().add(label);
+        root.getChildren().add(label1);
         primaryStage.setScene(new Scene(root, 300, 300));
         primaryStage.show();
     }
