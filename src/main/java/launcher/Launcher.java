@@ -437,19 +437,18 @@ public class Launcher extends Application {
 
     public void startStoryEight(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Story 8");
-        Button button = new Button("Add stamp to image");
-        button.setTranslateY(100);
+
+        Button button = new Button("Add filter to image");
+        button.setTranslateY(140);
+
+        Button button2 = new Button("Add stamp to image");
+        button2.setTranslateY(110);
 
         TextField textFieldPosX = new TextField("Enter Position X");
-        textFieldPosX.setTranslateY(-120);
+        textFieldPosX.setTranslateY(-160);
 
         TextField textFieldPosY = new TextField("Enter Position Y");
-        textFieldPosY.setTranslateY(-90);
-
-        Label label = new Label();
-
-        Label label1 = new Label();
-        label1.setTranslateY(70);
+        textFieldPosY.setTranslateY(-120);
 
         FileInputStream is = new FileInputStream("../java-avance/src/main/resources/inception5h/tensorPics/mouse.jpg");
         Image image = new Image(is);
@@ -457,13 +456,51 @@ public class Launcher extends Application {
         imageView.setFitHeight(100);
         imageView.setFitWidth(100);
 
+        Label label = new Label();
+        Label label1 = new Label();
+        label1.setTranslateY(70);
+
+        ComboBox filterList = new ComboBox();
+        Filters filter = new Filters();
+        filterList.setTranslateY(-90);
+        filterList.setTranslateX(30);
+        filterList.getItems().addAll("Red", "Green", "Blue", "");
+
+        ComboBox cadreList = new ComboBox();
+        cadreList.setTranslateY(-90);
+        cadreList.setTranslateX(-70);
+        cadreList.getItems().addAll("cadre1","cadre2","");
+
         button.setOnAction(e -> {
+            if (filterList.getValue() != null){
+                imageView.setEffect(filter.filtersList(filterList.getValue().toString())); // Apply filter to the image
+            }else if (filterList.getSelectionModel().getSelectedItem() == ""){
+                imageView.setEffect(null);
+            }
+            if (cadreList.getSelectionModel().getSelectedItem() != ""){
+                String name = cadreList.getValue().toString();
+                try {
+                    InputStream us = new FileInputStream("../java-avance/src/main/resources/inception5h/cadre/"+name+".png");
+                    Image images = new Image(us);
+                    ImageView view = new ImageView(images);
+                    view.setFitHeight(145);
+                    view.setFitWidth(145);
+                    label.setGraphic(view);
+                    label.setVisible(true);
+                } catch (FileNotFoundException fileNotFoundException) {
+                    fileNotFoundException.printStackTrace();
+                }
+            }else if (cadreList.getSelectionModel().getSelectedItem() == ""){
+                label.setVisible(false);
+            }
+        });
+
+        button2.setOnAction(e -> {
             try {
                 InputStream us = new FileInputStream("../java-avance/src/main/resources/inception5h/cadre/tampon.png");
                 Image images = new Image(us);
                 ImageView view = new ImageView(images);
                 if ((Double.parseDouble(textFieldPosX.getText()) >= 37.0 || Double.parseDouble(textFieldPosY.getText()) <= -37.0) || (Double.parseDouble(textFieldPosY.getText()) >= 37 || Double.parseDouble(textFieldPosY.getText()) <= -37)) {
-                    label1.setText("Value non valable");
                     label.setVisible(false);
                 }else{
                     view.setTranslateX(Double.parseDouble(textFieldPosX.getText()));
@@ -479,15 +516,27 @@ public class Launcher extends Application {
             }
         });
 
+
+        Button resetButton = new Button("reset");
+        resetButton.setTranslateY(200);
+        resetButton.setOnAction(e ->{
+            label.setVisible(false);
+            imageView.setEffect(null);
+        });
+
         StackPane root = new StackPane();
         root.getChildren().add(button);
+        root.getChildren().add(button2);
         root.getChildren().add(textFieldPosX);
         root.getChildren().add(textFieldPosY);
+        root.getChildren().add(resetButton);
         root.getChildren().add(imageView);
+        root.getChildren().add(filterList);
+        root.getChildren().add(cadreList);
         root.getChildren().add(label);
-        root.getChildren().add(label1);
-        primaryStage.setScene(new Scene(root, 300, 300));
+        primaryStage.setScene(new Scene(root, 720, 480));
         primaryStage.show();
+
     }
 
     private void stopCam() {
